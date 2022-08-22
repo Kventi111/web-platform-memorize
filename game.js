@@ -26,9 +26,7 @@ class Game {
       if (arr.indexOf(r) === -1) arr.push(r);
     }
 
-    console.log('1', arr);
     this.shutterElements(arr);
-    console.log('2', this.elements);
 
     return arr;
   };
@@ -41,22 +39,27 @@ class Game {
     this.renderGameField();
   };
 
+  checkWin = () => {
+    return this.gameGrid.every((i) => i.open);
+  };
+
   initGrid = () => {
     let gameGrid = this.gameGrid;
     let j = 0;
     let i = 0;
+    let arrIndex = 0;
 
     let random = this.getRandom(6, 6);
 
     console.log({ random });
 
-    while (i < this.elements.length) {
-      gameGrid[i] = new Cell(
+    while (arrIndex < this.elements.length) {
+      gameGrid[arrIndex] = new Cell(
         (i * this.width) / this.col,
         (j * this.height) / this.row,
         this.width / this.col,
         this.height / this.row,
-        this.elements[random[i]]
+        this.elements[random[arrIndex]]
       );
 
       // if (i == this.col) {
@@ -66,13 +69,18 @@ class Game {
       //   j++;
       // }
 
-      console.log({ i, j });
+      // console.log({ i, j });
 
       if (i == this.col - 1) {
         j++;
+        i = 0;
+      } else {
+        i++;
       }
-      i++;
+      arrIndex++;
     }
+
+    console.log({ gameGrid });
   };
 
   renderGameField = () => {

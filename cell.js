@@ -5,6 +5,7 @@ class Cell {
     this.width = width;
     this.height = height;
     this.value = value;
+    this.open = false;
     this.color = 'rgba(0,255,150,1)';
   }
 
@@ -24,8 +25,8 @@ class Cell {
     ctx.font = '48px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    // ctx.fillStyle = this.color;
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = this.open ? 'black' : this.color;
+    // ctx.fillStyle = 'black';
     ctx.fillText(
       this.value || '',
       this.x + this.width / 2,
