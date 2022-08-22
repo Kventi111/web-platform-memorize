@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   const CANVAS_HEIGHT = canvas.clientHeight;
   const DEFAULT_TEXT_COLOR = 'rgba(0,255,150,1)';
 
-  const game = new Game(CANVAS_WIDTH, CANVAS_HEIGHT, 3, 2, ctx);
+  const game = new Game(CANVAS_WIDTH, CANVAS_HEIGHT, 4, 3, ctx);
   const ui = new UI();
   let arr = [];
 

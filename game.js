@@ -6,13 +6,30 @@ class Game {
 
     this.gameGrid = [];
 
-    this.elements = [1, 1, 2, 2, 3, 3];
+    this.elements = [];
 
     this.col = col || 3;
     this.row = row || 3;
 
+    this.generateElements();
     this.initGrid();
     this.renderGameField();
+  }
+
+  generateElements() {
+    let i = 0;
+    let num = 1;
+
+    while (i < this.col * this.row) {
+      this.elements.push(num);
+      i++;
+
+      if (i % 2 === 0) {
+        num++;
+      }
+    }
+
+    console.log(this.elements);
   }
 
   shutterElements = (randomArr) => {
@@ -49,7 +66,7 @@ class Game {
     let i = 0;
     let arrIndex = 0;
 
-    let random = this.getRandom(6, 6);
+    let random = this.getRandom(this.col * this.row, this.col * this.row);
 
     console.log({ random });
 
@@ -61,15 +78,6 @@ class Game {
         this.height / this.row,
         this.elements[random[arrIndex]]
       );
-
-      // if (i == this.col) {
-      //   j = 0;
-      // } else {
-      //   i++;
-      //   j++;
-      // }
-
-      // console.log({ i, j });
 
       if (i == this.col - 1) {
         j++;
