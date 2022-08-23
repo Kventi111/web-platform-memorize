@@ -42,3 +42,38 @@ body {
   padding: 0;
   margin: 10px 0 0 0;
 }
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  color: gold;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.menu__item {
+  padding: 5px;
+  transition: background-color 0.5s ease-in;
+  cursor: pointer;
+}
+
+.menu__item:hover {
+  background-color: gray;
+}
+
+.button__primary {
+  padding: 10px 15px;
+  border: 1px solid gold;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.5s ease-in, background-color 0.5s ease-in;
+}
+
+.button__primary:hover {
+  border: 1px solid #fff;
+  color: gold;
+}
+
+.header {
+  position: absolute;
+}

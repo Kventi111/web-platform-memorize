@@ -3,12 +3,17 @@ document.addEventListener('DOMContentLoaded', function (event) {
   let ctx = canvas.getContext('2d');
   let rect = canvas.getClientRects();
   const resetBtn = document.querySelector('.winner_banner__reset__btn');
+  const menu = document.querySelector('.menu');
+
+  const [col, row] = localStorage.getItem('level').split('/');
+
+  console.log(col, row);
 
   const CANVAS_WIDTH = canvas.clientWidth;
   const CANVAS_HEIGHT = canvas.clientHeight;
   const DEFAULT_TEXT_COLOR = 'rgba(0,255,150,1)';
 
-  const game = new Game(CANVAS_WIDTH, CANVAS_HEIGHT, 4, 3, ctx);
+  const game = new Game(CANVAS_WIDTH, CANVAS_HEIGHT, col, row, ctx);
   const ui = new UI();
   let arr = [];
 
@@ -46,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
     }
   }
 
+  console.log(window.settings);
+
   canvas.addEventListener('click', (event) => {
     for (let i = 0; i < game.gameGrid.length; i++) {
       let currentCell = game.gameGrid[i];
@@ -57,6 +64,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
           ctx
         )
       ) {
+        if (currentCell.open) return;
+
         currentCell.open = true;
         currentCell.show(ctx);
 
@@ -64,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
       }
     }
 
-    console.log('123', arr);
     // console.log(
     //   arr.length >= 2 &&
     //     arr.every((curr, index, arr) => curr.value === arr[index + 1].value)
